@@ -26,10 +26,10 @@ app.post('/form/:endpoint', (req,res)=>{
     fetch(endpoint.action)
     .then(res=>{
       console.log("Response from velocify endpoint:", res.status, res.statusText);
-      res.text();
+      return res.text();
     })
     .then(txt=>{
-      console.log("Parsed response:", txt);
+      console.log("Parsed response:", txt, "redirecting to", endpoint.redirect);
       res.redirect(endpoint.redirect);
     })
   }
