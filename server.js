@@ -23,10 +23,12 @@ app.post('/form/:endpoint', (req,res)=>{
     return res.setStatus(400).end("Wrong endpoint requested");
 
   let formResult = endpoint.validator(req.body);
+  console.log(encode(req.body));
   if (formResult === "valid") {
     fetch(endpoint.action, {
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: encode(req.body)
+      body: encode(req.body),
+      method: 'POST'
     })
     .then(res=>{
       console.log("Response from velocify endpoint:", res.status, res.statusText);
