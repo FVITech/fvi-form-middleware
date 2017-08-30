@@ -25,7 +25,7 @@ app.post('/form/:endpoint', (req,res)=>{
   if (formResult === "valid") {
     fetch(endpoint.action)
     .then(res=>{
-      console.log("Response from velocify endpoint:", res);
+      console.log("Response from velocify endpoint:", res.status, res.statusText);
       res.text();
     })
     .then(txt=>{
