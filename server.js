@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const fetch = require('node-fetch');
+const encode = require('form-urlencoded');
 
 const endpoints = {
   fviedu: {
@@ -23,7 +24,10 @@ app.post('/form/:endpoint', (req,res)=>{
 
   let formResult = endpoint.validator(req.body);
   if (formResult === "valid") {
-    fetch(endpoint.action)
+    fetch(endpoint.action, {
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: encode(req.body)
+    })
     .then(res=>{
       console.log("Response from velocify endpoint:", res.status, res.statusText);
       return res.text();
