@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 
 const endpoints = {
   fviedu: {
-    action: "https://secure.velocify.com/Import.aspx?Provider=FVI&Client=30010&CampaignId=1025&Url=http://www.fvi.edu/thank-you/",
+    action: "https://secure.velocify.com/Import.aspx?Provider=FVI&Client=30010&CampaignId=1025",
     validator: validateFVIForm,
     redirect: 'http://www.fvi.edu/thank-you/'
   }
