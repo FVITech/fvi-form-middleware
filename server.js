@@ -51,7 +51,7 @@ app.listen(1338, ()=>console.log("Techlaunch form service listening"));
 //returns either the string "valid" or an error message
 function validateFVIForm(theform){
   let errorMessage = "";
-  theform.day_phone=theform.phone1+theform.phone2+theform.phone3;
+  let error = false;
   var phoneno = /^\d{10}$/;
   try{
     if (theform.first_name == ""){
@@ -90,10 +90,6 @@ function validateFVIForm(theform){
     }
     else if (theform.zipcode == ""){
         errorMessage = "Please enter your zip code";
-        error = true;
-    }
-    else if (theform.location_id.value == ""){
-        errorMessage = "Please select a program";
         error = true;
     }
 
