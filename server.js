@@ -20,6 +20,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(ensureSecure);
 
+app.get('/', (req,res)=>{
+  res.end("This is a test");
+})
+
 app.post('/form/:endpoint', (req,res)=>{
   let endpoint = endpoints[req.params.endpoint];
   if (typeof endpoint == 'undefined' )
