@@ -79,7 +79,7 @@ https.createServer(httpsOptions, app).listen(PORT, listenCB);
 //http.createServer(app).listen(PORT, listenCB);
 
 function listenCB(){
-  console.log("Web server listening on port " + app.get('port'));
+  console.log("Web server listening on port " + PORT);
 }
 
 
