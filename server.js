@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const fetch = require('node-fetch');
 const encode = require('form-urlencoded');
+const PORT = 1338;
 
 const endpoints = {
   fviedu: {
@@ -16,6 +17,7 @@ let blackList = {};
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(ensureSecure);
 
 app.post('/form/:endpoint', (req,res)=>{
   let endpoint = endpoints[req.params.endpoint];
@@ -47,12 +49,31 @@ app.post('/form/:endpoint', (req,res)=>{
       //timing them out...
     }
     else {
-      res.end("invalid form values. Please copy and paste this message to vmoreno@techlaunch.io"+JSON.stringify(req.body, null, 2));
+      res.end("invalid form values. Please copy and paste this message to ofernandez@fvi.edu - "+JSON.stringify(req.body, null, 2));
     }
   }
 });
 
-app.listen(1338, ()=>console.log("Techlaunch form service listening"));
+function ensureSecure(req, res, next){
+  if(req.secure || req.hostname.indexOf('localhost') >= 0){
+    // OK, continue
+    return next();
+  };
+  res.redirect('https://' + req.hostname.slice(0,-1) + ':1338' + req.url); // express 4.x
+};
+
+let httpsOptions = {
+  key: fs.readFileSync('/etc/letsencrypt/live/apps.techlaunch.io/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/apps.techlaunch.io/fullchain.pem'),
+  ca: fs.readFileSync('/etc/letsencrypt/live/apps.techlaunch.io/chain.pem')
+};
+https.createServer(httpsOptions, app).listen(PORT, listenCB);
+//http.createServer(app).listen(PORT, listenCB);
+
+function listenCB(){
+  console.log("Web server listening on port " + app.get('port'));
+}
+
 
 //returns either the string "valid" or an error message
 function validateFVIForm(theform){
