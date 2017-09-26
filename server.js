@@ -63,8 +63,10 @@ app.post('/form/:endpoint', (req,res)=>{
 function ensureSecure(req, res, next){
   if(req.secure || req.hostname.indexOf('localhost') >= 0){
     // OK, continue
+    console.log("secure middleware continuing");
     return next();
   };
+  console.log("Secure middleware forwarding to",'https://' + req.hostname + ':1338' + req.url);
   res.redirect('https://' + req.hostname + ':1338' + req.url); // express 4.x
 };
 
