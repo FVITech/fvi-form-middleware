@@ -64,7 +64,7 @@ function ensureSecure(req, res, next){
     // OK, continue
     return next();
   };
-  res.redirect('https://' + req.hostname.slice(0,-1) + ':1338' + req.url); // express 4.x
+  res.redirect('https://' + req.hostname + ':1338' + req.url); // express 4.x
 };
 
 let httpsOptions = {
