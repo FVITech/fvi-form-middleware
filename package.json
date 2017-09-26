@@ -21,6 +21,7 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "form-urlencoded": "^2.0.4",
+    "https": "^1.0.0",
     "node-fetch": "^1.7.2"
   },
   "devDependencies": {
