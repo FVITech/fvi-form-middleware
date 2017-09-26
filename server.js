@@ -11,7 +11,7 @@ const endpoints = {
   fviedu: {
     action: "https://secure.velocify.com/Import.aspx?Provider=FVI&Client=30010&CampaignId=1025",
     validator: validateFVIForm,
-    redirect: 'http://www.fvi.edu/thank-you/'
+    redirect: 'https://www.fvi.edu/thank-you/'
   }
 }
 
