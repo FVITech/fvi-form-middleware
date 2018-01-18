@@ -9,7 +9,7 @@ const https = require('https');
 
 const endpoints = {
   fviedu: {
-    action: "https://secure.velocify.com/Import.aspx?Provider=FVI&Client=30010&CampaignId=1025",
+    action: "https://secure.velocify.com/Import.aspx?Provider=FloridaVocationalInstitute&Client=30010&CampaignId=1025",
     validator: validateFVIForm,
     redirect: 'https://www.fvi.edu/thank-you/'
   }
